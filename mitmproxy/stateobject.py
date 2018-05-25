@@ -78,7 +78,7 @@ def _process(typeinfo: typecheck.Type, val: typing.Any, make: bool) -> typing.An
         }
     elif typename.startswith("typing.Any"):
         # FIXME: Remove this when we remove flow.metadata
-        assert isinstance(val, (int, str, bool, bytes))
+        assert isinstance(val, (int, str, bool, float, bytes))
         return val
     else:
         return typeinfo(val)
