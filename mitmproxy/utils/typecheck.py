@@ -75,7 +75,7 @@ def check_option_type(name: str, value: typing.Any, typeinfo: Type) -> None:
 
 
 def typespec_to_str(typespec: typing.Any) -> str:
-    if typespec in (str, int, bool):
+    if typespec in (str, int, bool, float):
         t = typespec.__name__
     elif typespec == typing.Optional[str]:
         t = 'optional str'

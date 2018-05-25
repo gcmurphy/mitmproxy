@@ -23,7 +23,9 @@ def test_check_option_type():
         typecheck.check_option_type("foo", None, str)
     with pytest.raises(TypeError):
         typecheck.check_option_type("foo", b"foo", str)
-
+    typecheck.check_option_type("foo", 42.0, float)
+    with pytest.raises(TypeError):
+        typecheck.check_option_type("foo", 42.0, int)
 
 def test_check_union():
     typecheck.check_option_type("foo", 42, typing.Union[int, str])
@@ -70,6 +72,9 @@ def test_check_any():
 
 def test_typesec_to_str():
     assert(typecheck.typespec_to_str(str)) == "str"
+    assert(typecheck.typespec_to_str(int)) == "int"
+    assert(typecheck.typespec_to_str(bool)) == "bool"
+    assert(typecheck.typespec_to_str(float)) == "float"
     assert(typecheck.typespec_to_str(typing.Sequence[str])) == "sequence of str"
     assert(typecheck.typespec_to_str(typing.Optional[str])) == "optional str"
     with pytest.raises(NotImplementedError):

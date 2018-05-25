@@ -66,6 +66,20 @@ function NumberOption({ value, onChange, ...props }) {
     )
 }
 
+FloatingPointOption.PropTypes = {
+    value: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
+}
+function FloatingPointOption({ value, onChange, ...props }) {
+    return (
+        <input type="number"
+               value={value}
+               onChange={(e) => onChange(parseFloat(e.target.value))}
+               {...props}
+        />
+    )
+}
+
 ChoicesOption.PropTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -104,6 +118,7 @@ export const Options = {
     "bool": BooleanOption,
     "str": StringOption,
     "int": NumberOption,
+    "float": FloatingPointOption,
     "optional str": Optional(StringOption),
     "sequence of str": StringSequenceOption,
 }
